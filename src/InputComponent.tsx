@@ -8,7 +8,7 @@ interface InputComponentState {
 
 interface InputComponentProps {
 
-    onNewTodoCreated: (title: string) => void;
+    onNewTodoCreated: (title: string, date: Date) => void;
 
 }
 
@@ -28,11 +28,12 @@ export class InputComponent extends React.Component<InputComponentProps, InputCo
     }
 
     handleSave() {
-        this.props.onNewTodoCreated(this.state.currentValue);
+        this.props.onNewTodoCreated(this.state.currentValue, new Date());
     }
 
     render(): ReactNode {
         return (
+
             <div className="input-group mb-3">
                 <input type="text" onChange={event => this.handleChanges(event.target.value)}
                        value={this.state.currentValue} className="form-control" placeholder="Дело..."/>
