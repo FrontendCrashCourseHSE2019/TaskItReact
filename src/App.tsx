@@ -1,20 +1,12 @@
 import React, {ReactNode} from 'react';
 import './App.css';
 import {InputComponent} from "./InputComponent";
+import {TodoItem} from "./todo";
 
-class ToDoItem {
-
-    title: string;
-
-    constructor(title: string) {
-        this.title = title;
-    }
-
-}
 
 interface AppState {
 
-    items: ToDoItem[];
+    items: TodoItem[];
 
 }
 
@@ -29,7 +21,8 @@ export class App extends React.Component<{}, AppState> {
     }
 
     onNewTodoHandle(title: string) {
-        let newTodoItem = new ToDoItem(title);
+        let today = new Date();
+        let newTodoItem = new TodoItem({description: title, date: today.toLocaleDateString()});
         this.setState({
             items: [...this.state.items, newTodoItem]
         });
@@ -46,9 +39,9 @@ export class App extends React.Component<{}, AppState> {
                         <InputComponent onNewTodoCreated={title => this.onNewTodoHandle(title)}/>
 
                         <div id="items-container">
-                            {this.state.items.map(todoItem => {
+                            {this.state.items.map(item => {
                                 return (
-                                    <div>{todoItem.title}</div>
+                                    <TodoItem description={item.props.description} date={item.props.date}/>
                                 )
                             })}
                         </div>
