@@ -35,7 +35,7 @@ export class InputComponent extends React.Component<InputComponentProps, InputCo
         return (
             <div className="input-group mb-3">
                 <input type="text" onChange={event => this.handleChanges(event.target.value)}
-                       value={this.state.currentValue} className="form-control" placeholder="Дело..."/>
+                       value={this.state.currentValue} className="form-control" placeholder="Заметка..."/>
                 <div className="input-group-append">
                     <button className="btn btn-outline-secondary" onClick={event => this.handleSave()}
                             type="button">Добавить
