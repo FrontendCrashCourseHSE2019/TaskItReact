@@ -8,7 +8,7 @@ interface InputComponentState {
 
 interface InputComponentProps {
 
-    onNewTodoCreated: (title: string) => void;
+    onNewTodoCreated: (title: string, date: Date) => void;
 
 }
 
@@ -28,7 +28,7 @@ export class InputComponent extends React.Component<InputComponentProps, InputCo
     }
 
     handleSave() {
-        this.props.onNewTodoCreated(this.state.currentValue);
+        this.props.onNewTodoCreated(this.state.currentValue, new Date());
     }
 
     render(): ReactNode {
@@ -37,7 +37,7 @@ export class InputComponent extends React.Component<InputComponentProps, InputCo
                 <input type="text" onChange={event => this.handleChanges(event.target.value)}
                        value={this.state.currentValue} className="form-control" placeholder="Дело..."/>
                 <div className="input-group-append">
-                    <button className="btn btn-outline-secondary" onClick={event => this.handleSave()}
+                    <button className="btn btn-outline-success" onClick={event => this.handleSave()}
                             type="button">Добавить
                     </button>
                 </div>
